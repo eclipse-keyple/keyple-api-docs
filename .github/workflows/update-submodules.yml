@@ -41,7 +41,6 @@ jobs:
           else
             echo "No changes to commit"
             echo "changes_detected=false" >> $GITHUB_ENV
-          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -62,61 +61,61 @@ jobs:
             fi
           done
 
-          # Step 2: Process all submodules
-          echo "Processing submodules..."
-          git submodule foreach --quiet 'echo $name' | while read -r module; do
-            echo "Checking module: $module"
+          # Step 2: Process all modules (not as git submodules)
+          echo "Processing modules..."
+          for module in *; do
+            if [ -d "$module" ]; then
+              echo "Checking module: $module"
 
-            # Check if module name contains "-java-" or "kmp"
-            if [[ "$module" == *"-java-"* ]] || [[ "$module" == *"kmp"* ]]; then
-              echo "Processing module: $module"
+              # Check if module name contains "-java-" or "kmp"
+              if [[ "$module" == *"-java-"* ]] || [[ "$module" == *"kmp"* ]]; then
+                echo "Processing module: $module"
 
-              # Determine the UML folder name
-              if [[ "$module" == *"-java-"* ]]; then
-                uml_module="${module//-java-/-uml-}"
-              else
-                # For kmp modules
-                uml_module="${module//kmp/uml}"
-              fi
-
-              echo "Creating UML version: $uml_module"
-
-              # Copy the entire folder
-              cp -r "$module" "$uml_module"
-
-              # Navigate to the new folder
-              cd "$uml_module"
-
-              # Step 3: Clean up version folders - keep only api_class_diagram.svg
-              echo "Cleaning up version folders in $uml_module..."
-              for version_dir in */; do
-                if [ -d "$version_dir" ]; then
-                  # Skip special directories
-                  if [[ "$version_dir" == "_layouts/" ]] || [[ "$version_dir" == ".git/" ]]; then
-                    continue
-                  fi
-
-                  echo "Processing version folder: $version_dir"
-                  cd "$version_dir"
-
-                  # Keep only api_class_diagram.svg at the root, delete everything else
-                  find . -mindepth 1 ! -name "api_class_diagram.svg" -delete
-
-                  cd ..
+                # Determine the UML folder name
+                if [[ "$module" == *"-java-"* ]]; then
+                  uml_module="${module//-java-/-uml-}"
+                else
+                  uml_module="${module//kmp/uml}"
                 fi
-              done
 
-              # Step 4: Modify list_versions.md
-              if [ -f "list_versions.md" ]; then
-                echo "Modifying list_versions.md..."
-                # Remove [API documentation](xxx)<br> patterns
-                sed -i 's/\[API documentation\]([^)]*)<br>//g' list_versions.md
+                echo "Creating UML version: $uml_module"
+
+                # Copy the entire folder (simple copy, no submodule)
+                cp -r "$module" "$uml_module"
+
+                # Navigate to the new folder
+                cd "$uml_module"
+
+                # Step 3: Clean up version folders - keep only api_class_diagram.svg
+                echo "Cleaning up version folders in $uml_module..."
+                for version_dir in */; do
+                  if [ -d "$version_dir" ]; then
+                    # Skip special directories
+                    if [[ "$version_dir" == "_layouts/" ]] || [[ "$version_dir" == ".git/" ]]; then
+                      continue
+                    fi
+
+                    echo "Processing version folder: $version_dir"
+                    cd "$version_dir"
+
+                    # Keep only api_class_diagram.svg at the root, delete everything else
+                    find . -mindepth 1 ! -name "api_class_diagram.svg" -delete
+
+                    cd ..
+                  fi
+                done
+
+                # Step 4: Modify list_versions.md
+                if [ -f "list_versions.md" ]; then
+                  echo "Modifying list_versions.md..."
+                  sed -i 's/\[API documentation\]([^)]*)<br>//g' list_versions.md
+                fi
+
+                # Go back to root
+                cd ..
+
+                echo "Finished processing $module -> $uml_module"
               fi
-
-              # Go back to root
-              cd ..
-
-              echo "Finished processing $module -> $uml_module"
             fi
           done
 
@@ -125,7 +124,7 @@ jobs:
 
           # Commit UML changes if any
           if [[ -n $(git status --porcelain) ]]; then
-            git commit -m "Generate UML documentation from updated submodules"
+            git commit -m "Generate UML documentation from updated modules"
             echo "UML documentation changes committed."
           else
             echo "No UML documentation changes to commit."
