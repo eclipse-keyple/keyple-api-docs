@@ -1,7 +1,7 @@
 name: Update Submodules and Publish
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
   repository_dispatch:
     types: [update-submodules]
   push:
