@@ -41,6 +41,7 @@ jobs:
           else
             echo "No changes to commit"
             echo "changes_detected=false" >> $GITHUB_ENV
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
