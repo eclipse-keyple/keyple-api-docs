@@ -84,6 +84,9 @@ jobs:
                 # Copy the entire folder (simple copy, no submodule)
                 cp -r "$module" "$uml_module"
 
+                # Remove .git to prevent it from being treated as a submodule
+                rm -rf "$uml_module/.git"
+
                 # Navigate to the new folder
                 cd "$uml_module"
 
