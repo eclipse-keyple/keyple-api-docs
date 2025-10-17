@@ -12,6 +12,47 @@
     <![endif]-->
     {% include head-custom.html %}
     <style>
+        /* Override minimal theme's narrow layout */
+        .wrapper {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Override minimal theme's narrow header */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            float: none;
+            position: static;
+            padding: 20px 0;
+        }
+
+        header img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        /* Override minimal theme's narrow section */
+        section {
+            width: 100%;
+            float: none;
+            padding: 0;
+        }
+
+        /* Override minimal theme's narrow footer */
+        footer {
+            width: 100%;
+            float: none;
+            position: static;
+            padding: 20px 0;
+            border-top: 1px solid #e1e4e8;
+            margin-top: 40px;
+        }
+
         .breadcrumb {
             list-style: none;
             padding: 0;
@@ -35,19 +76,6 @@
         .breadcrumb li:last-child::after {
             content: '';
         }
-        header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        header img {
-            max-width: 200px;
-            height: auto;
-        }
-        .wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
         .repo-link {
             margin: 15px 0;
             color: #586069;
@@ -64,6 +92,7 @@
             background: #f6f8fa;
             border-collapse: collapse;
             width: 100%;
+            margin: 20px 0;
         }
         td, th {
             padding: 8px 12px;
@@ -79,6 +108,19 @@
         }
         a:hover {
             text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media print, screen and (max-width: 960px) {
+            .wrapper {
+                width: 100%;
+                padding: 0 10px;
+            }
+            header, section, footer {
+                width: 100%;
+                float: none;
+                position: static;
+            }
         }
     </style>
     <title>Keyple API Documentation</title>
