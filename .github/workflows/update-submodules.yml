@@ -38,7 +38,7 @@ jobs:
       - name: Update Git submodules
         id: commit
         run: |
-          # Si le workflow a été lancé manuellement, on saute la détection
+          # If the workflow has been started manually, skip detection.
           if [[ "${{ env.changes_detected }}" == "true" ]]; then
             echo "Manual trigger detected — skipping submodule change check."
             exit 0
