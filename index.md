@@ -40,8 +40,8 @@
       <button class="btn btn-sm btn-outline-dark btn-filter" data-filter="all" onclick="filterByType('all')">
         <i class="bi bi-check-all"></i> All
       </button>
-      <button class="btn btn-sm btn-outline-danger btn-filter" data-filter="java" onclick="filterByType('java')">
-        <i class="bi bi-cup-hot"></i> Java
+      <button class="btn btn-sm btn-outline-danger btn-filter" data-filter="jvm" onclick="filterByType('jvm')">
+        <i class="bi bi-cup-hot"></i> JVM
       </button>
       <button class="btn btn-sm btn-outline-primary btn-filter" data-filter="cpp" onclick="filterByType('cpp')">
         <i class="bi bi-code-slash"></i> C++
@@ -80,8 +80,8 @@
           {% assign type_badge = "secondary" %}
           {% assign category = "unknown" %}
 
-          {% if subdir contains "-java-" %}
-            {% assign type = "java" %}
+          {% if subdir contains "-java-" or subdir contains "-jvm-" %}
+            {% assign type = "jvm" %}
             {% assign type_badge = "danger" %}
           {% elsif subdir contains "-cpp-" %}
             {% assign type = "cpp" %}
@@ -130,7 +130,7 @@
         btn.classList.remove('btn-outline-dark', 'btn-outline-danger', 'btn-outline-primary', 'btn-outline-success', 'btn-outline-warning');
         btn.classList.add('btn-primary');
         if (type === 'all') btn.className = 'btn btn-sm btn-dark btn-filter';
-        else if (type === 'java') btn.className = 'btn btn-sm btn-danger btn-filter';
+        else if (type === 'jvm') btn.className = 'btn btn-sm btn-danger btn-filter';
         else if (type === 'cpp') btn.className = 'btn btn-sm btn-primary btn-filter';
         else if (type === 'kmp') btn.className = 'btn btn-sm btn-success btn-filter';
         else if (type === 'uml') btn.className = 'btn btn-sm btn-warning btn-filter';
@@ -138,7 +138,7 @@
         const filterType = btn.getAttribute('data-filter');
         btn.classList.remove('btn-dark', 'btn-danger', 'btn-primary', 'btn-success', 'btn-warning');
         if (filterType === 'all') btn.className = 'btn btn-sm btn-outline-dark btn-filter';
-        else if (filterType === 'java') btn.className = 'btn btn-sm btn-outline-danger btn-filter';
+        else if (filterType === 'jvm') btn.className = 'btn btn-sm btn-outline-danger btn-filter';
         else if (filterType === 'cpp') btn.className = 'btn btn-sm btn-outline-primary btn-filter';
         else if (filterType === 'kmp') btn.className = 'btn btn-sm btn-outline-success btn-filter';
         else if (filterType === 'uml') btn.className = 'btn btn-sm btn-outline-warning btn-filter';
