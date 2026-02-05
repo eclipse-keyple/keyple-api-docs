@@ -122,15 +122,3 @@
 	path = keyple-plugin-storagecard-java-api
 	url = https://github.com/eclipse-keyple/keyple-plugin-storagecard-java-api.git
 	branch = doc
-[submodule "keyple-logging-slf4j-jvm-lib"]
-	path = keyple-logging-slf4j-jvm-lib
-	url = https://github.com/eclipse-keyple/keyple-logging-slf4j-jvm-lib.git
-	branch = doc
-[submodule "keyple-logging-android-timber-jvm-lib"]
-	path = keyple-logging-android-timber-jvm-lib
-	url = https://github.com/eclipse-keyple/keyple-logging-android-timber-jvm-lib.git
-	branch = doc
-[submodule "keyple-logging-android-log-jvm-lib"]
-	path = keyple-logging-android-log-jvm-lib
-	url = https://github.com/eclipse-keyple/keyple-logging-android-log-jvm-lib.git
-	branch = doc
