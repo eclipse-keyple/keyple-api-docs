@@ -1,0 +1,14 @@
+theme: jekyll-theme-minimal
+title: Keyple API Documentation
+url: "https://docs.keyple.org"
+plugins:
+  - jekyll-sitemap
+defaults:
+  - scope:
+      path: "*/[0-9]*"
+    values:
+      sitemap: false
+exclude:
+  - "keyple-*/"
+include:
+  - "_*.html"
