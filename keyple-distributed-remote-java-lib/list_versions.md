@@ -1,0 +1,10 @@
+| Version | Documents |
+|:---:|---|
+| 2.6.0-SNAPSHOT | [API documentation](2.6.0-SNAPSHOT)<br>[API class diagram](2.6.0-SNAPSHOT/api_class_diagram.svg) |
+| **2.6.0 (latest stable)** | [API documentation](latest-stable)<br>[API class diagram](2.6.0/api_class_diagram.svg) |
+| 2.5.2 | [API documentation](2.5.2)<br>[API class diagram](2.5.2/api_class_diagram.svg) |
+| 2.4.0 | [API documentation](2.4.0)<br>[API class diagram](2.4.0/api_class_diagram.svg) |
+| 2.3.1 | [API documentation](2.3.1)<br>[API class diagram](2.3.1/api_class_diagram.svg) |
+| 2.2.1 | [API documentation](2.2.1)<br>[API class diagram](2.2.1/api_class_diagram.svg) |
+| 2.1.0 | [API documentation](2.1.0)<br>[API class diagram](2.1.0/api_class_diagram.svg) |
+| 2.0.0 | [API documentation](2.0.0)<br>[API class diagram](2.0.0/api_class_diagram.svg) |
